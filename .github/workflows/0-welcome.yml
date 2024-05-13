@@ -8,3 +8,15 @@ jobs:
   build:
     name: Post welcome comment
     runs-on: ubuntu-latest
+    steps:
+    - name: Post comment
+      uses: actions/github-script@v4
+      with:
+        script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Welcome to our project!'
+            })
+      
